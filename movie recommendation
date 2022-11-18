@@ -1,0 +1,192 @@
+package moviesystem;
+import java.util.*;
+interface movierecommendation{
+
+
+public void display();
+public void additional();
+public int getyear();
+public String getlang();
+public int getrating();
+}
+class Movie implements movierecommendation{
+public String moviename;
+public int year;
+public String language;
+public int imdbrating;
+public String genre;
+public void display() {
+
+}
+public void additional(){
+
+}
+public int getyear(){
+Scanner sc=new Scanner(System.in);
+System.out.println("enter the year so that we recommend movies released after that year");
+int  year =sc.nextInt();
+return year;
+}
+public String getlang(){
+Scanner sc=new Scanner(System.in);
+String  lang =sc.nextLine();
+return lang;
+}
+public int getrating(){
+Scanner sc=new Scanner(System.in);
+int  rating =sc.nextInt();
+return rating;
+}
+public String getgenre(){
+Scanner sc=new Scanner(System.in);
+System.out.println("Examples of Genre are ACTION,THRILLER,ROMANTIC.COMEDY,HISTORIC,SCI-FI");
+String  genre =sc.nextLine();
+return genre;
+}
+
+
+}
+class welcome{
+String[] trend1 ={"KGF","Kantara","PS-1","Brahmastraa","Black Adam"};
+public void displaymessage() {
+System.out.println("WELCOME TO OUR MOVIE RECOMMENDATION SYSTEM");
+}
+public void trenddisplay(){
+System.out.println("Trending movies of the year");
+for(int i=0;i<5;i++) {
+System.out.println(trend1[i]);
+System.out.println("\n");
+}
+}
+}
+class InvalidInputException extends Exception{
+InvalidInputException(String s){
+super(s);
+}
+}
+
+class Movierecommenderapplication{
+public static void main(String[] args){
+Scanner sc=new Scanner(System.in);
+welcome we=new welcome();
+we.displaymessage();
+Movie[] array1;
+Movie obj=new Movie();
+array1=new Movie[25];
+
+int i=0;
+while(i==0) {
+System.out.println("We provide recommendations on the basis of the following factors");
+System.out.println("1.year\n2.Language\n3.IMDB Rating\n4.genre5.Trending movies");
+   System.out.println("Enter your choice:");
+   int choice=sc.nextInt();
+   try {
+    if(choice>5 &&choice<1){
+    throw new InvalidInputException("Enter only valid choice choice");
+    }
+   }
+   catch(Exception e){
+    System.out.println(e.getMessage());
+   }
+   if(choice==1) {
+    int flag=0;
+    int yearwanted=obj.getyear();
+    for(int m=0;m<50;m++) {
+    if(array1[m].year>=yearwanted) {
+    flag++;
+    System.out.println(array1[m].moviename+"  "+array1[m].language+"  "+array1[m].imdbrating);
+    System.out.println("\n");
+    }
+    }
+    if(flag==0) {
+    System.out.println("Sorry we couldn't recommend any movies based on your request");
+    System.out.println("Will definitely update our data set");
+    }
+    if(flag>0) {
+    System.out.println("Hope you enjoyed our recommendation");
+    }
+                   
+   
+   }
+   
+   if(choice==2) {
+    int flag=0;
+    String langwanted=obj.getlang();
+    for(int m=0;m<50;m++) {
+    if(array1[m].language==langwanted) {
+    flag++;
+    System.out.println(array1[m].moviename+"  "+array1[m].year+"  "+array1[m].imdbrating);
+    System.out.println("\n");
+    }
+    }
+    if(flag==0) {
+    System.out.println("Sorry we couldn't recommend any movies based on your request");
+    System.out.println("Will definitely update our data set");
+    }
+    if(flag>0) {
+    System.out.println("Hope you enjoyed our recommendation");
+    }
+                   
+   
+   }
+   if(choice==3) {
+    int flag=0;
+    int ratingwanted=obj.getrating();
+    for(int m=0;m<50;m++) {
+    if(array1[m].imdbrating>=ratingwanted) {
+    flag++;
+    System.out.println(array1[m].moviename+"  "+array1[m].year+"  "+array1[m].language+"  "+array1[m].imdbrating);
+    System.out.println("\n");
+    }
+    }
+    if(flag==0) {
+    System.out.println("Sorry we couldn't recommend any movies based on your request");
+    System.out.println("Will definitely update our data set");
+    }
+    if(flag>0) {
+    System.out.println("Hope you enjoyed our recommendation");
+    }
+                   
+   
+   }
+   if(choice==4) {
+    int flag=0;
+    String genrewanted=obj.getgenre();
+    for(int m=0;m<50;m++) {
+    if(array1[m].genre==genrewanted) {
+    flag++;
+    System.out.println(array1[m].moviename+"  "+array1[m].year+"  "+array1[m].language+"  "+array1[m].imdbrating);
+    System.out.println("\n");
+    }
+    }
+    if(flag==0) {
+    System.out.println("Sorry we couldn't recommend any movies based on your request");
+    System.out.println("Will definitely update our data set");
+    }
+    if(flag>0) {
+    System.out.println("Hope you enjoyed our recommendation");
+    }
+                   
+   
+   }
+   if(choice==5) {
+    we.trenddisplay();
+   
+   
+   }
+   System.out.println("Do you wish to continue getting recommendations ");
+   System.out.println("press 0 to exit system and any other key to continue");
+   int ar=sc.nextInt();
+   if(ar==0) {
+    System.out.println("Thank you for using our system");
+    System.out.println("See you soon");
+    System.exit(-1);
+   }
+   
+}
+   
+
+
+}
+}
+
